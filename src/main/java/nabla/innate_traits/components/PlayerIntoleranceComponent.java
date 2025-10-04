@@ -41,21 +41,12 @@ public class PlayerIntoleranceComponent implements IntoleranceComponent {
     @Override
     public void readFromNbt(NbtCompound tag) {
         for (Intolerance type : Intolerance.values()) {
-            intoleranceLevels.put(type, 0);
-        }
-        discoveredIntolerances.clear();
-
-        for (Intolerance type : Intolerance.values()) {
             String levelKey = NBT_PREFIX_LEVEL + type.name();
-            if (tag.contains(levelKey)) {
-                intoleranceLevels.put(type, tag.getInt(levelKey,0));
-            }
+            intoleranceLevels.put(type, tag.getInt(levelKey, 0));
 
             String discoveredKey = NBT_PREFIX_DISCOVERED + type.name();
-            if (tag.contains(discoveredKey)) {
-                if(tag.getBoolean(discoveredKey, false)) {
-                    discoveredIntolerances.add(type);
-                }
+            if (tag.getBoolean(discoveredKey, false)) {
+                discoveredIntolerances.add(type);
             }
         }
 
