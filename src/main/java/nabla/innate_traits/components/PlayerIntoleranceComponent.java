@@ -1,5 +1,6 @@
 package nabla.innate_traits.components;
 
+import nabla.innate_traits.Innate_traits;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.storage.ReadView;
@@ -40,6 +41,8 @@ public class PlayerIntoleranceComponent implements IntoleranceComponent {
 
     @Override
     public void readFromNbt(NbtCompound tag) {
+        Innate_traits.LOGGER.info("Reading from NBT. Tag contains initialized key: " + tag.contains(NBT_KEY_INITIALIZED));
+
         this.discoveredIntolerances.clear();
         for (Intolerance type : Intolerance.values()) {
             String levelKey = NBT_PREFIX_LEVEL + type.name();
@@ -52,10 +55,13 @@ public class PlayerIntoleranceComponent implements IntoleranceComponent {
         }
 
         this.initialized = tag.getBoolean(NBT_KEY_INITIALIZED, false);
+        Innate_traits.LOGGER.info("Finished reading from NBT. 'initialized' is now: " + this.initialized);
     }
 
     @Override
     public void writeToNbt(NbtCompound tag) {
+        Innate_traits.LOGGER.info("Writing to NBT. 'initialized' is: " + this.initialized);
+
         intoleranceLevels.forEach((type, level) -> {
             if (level > 0) {
                 tag.putInt(NBT_PREFIX_LEVEL + type.name(), level);
@@ -78,7 +84,6 @@ public class PlayerIntoleranceComponent implements IntoleranceComponent {
         this.setInitialized(original.hasBeenInitialized());
     }
 
-    // Diese leeren Methoden müssen wir behalten, damit der Compiler zufrieden ist.
     @Override
     public void readData(ReadView readView) { }
     @Override

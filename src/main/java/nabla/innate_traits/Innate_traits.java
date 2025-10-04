@@ -66,6 +66,7 @@ public class Innate_traits implements ModInitializer, EntityComponentInitializer
                 LOGGER.info("Assigned WEAK intolerance for " + toAssign.name());
             }
             component.setInitialized(true);
+            INTOLERANCES.sync(player);
         } else {
             StringBuilder traitsLog = new StringBuilder();
             for (Intolerance type : Intolerance.values()) {
