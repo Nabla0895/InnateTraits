@@ -16,7 +16,7 @@
     "fabric-datagen": ["nabla.innate_traits.client.Innate_traitsDataGenerator"],
     "client": ["nabla.innate_traits.client.Innate_traitsClient"],
     "main": ["nabla.innate_traits.Innate_traits"],
-    "cardinal-components-entity": ["nabla.innate_traits.Innate_traits"]
+    "cardinal-components": ["nabla.innate_traits.Innate_traits"]
   },
 
   "mixins": [
@@ -32,5 +32,11 @@
     "fabric": "*",
     "minecraft": "${minecraft_version}",
     "cardinal-components-entity": ">=5.6.0"
+  },
+
+  "custom": {
+    "cardinal-components": [
+      "nabla.innate_traits.Innate_traits"
+    ]
   }
 }
