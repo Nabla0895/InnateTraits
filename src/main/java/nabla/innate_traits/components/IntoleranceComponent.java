@@ -1,27 +1,19 @@
 package nabla.innate_traits.components;
 
-import net.minecraft.storage.ReadView;
-import net.minecraft.storage.WriteView;
-import org.ladysnake.cca.api.v3.component.Component;
+import net.minecraft.nbt.NbtCompound;
+import org.ladysnake.cca.api.v3.component.CopyableComponent;
 
-import java.util.EnumMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
-public interface IntoleranceComponent extends Component {
+public interface IntoleranceComponent extends CopyableComponent<IntoleranceComponent> {
 
     int getLevel(Intolerance type);
-
     void setLevel(Intolerance type, int level);
-
     boolean isDiscovered(Intolerance type);
-
     void setDiscovered(Intolerance type, boolean discovered);
 
     @Override
-    void writeData(WriteView writeView);
+    void readFromNbt(NbtCompound tag);
 
     @Override
-    void readData(ReadView readView);
+    void writeToNbt(NbtCompound tag);
 }
