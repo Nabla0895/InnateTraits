@@ -1,6 +1,7 @@
 package nabla.innate_traits.components;
 
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.RegistryWrapper;
 import org.ladysnake.cca.api.v3.component.CopyableComponent;
 
 
@@ -11,9 +12,10 @@ public interface IntoleranceComponent extends CopyableComponent<IntoleranceCompo
     boolean isDiscovered(Intolerance type);
     void setDiscovered(Intolerance type, boolean discovered);
 
-    @Override
     void readFromNbt(NbtCompound tag);
 
-    @Override
     void writeToNbt(NbtCompound tag);
+
+    @Override
+    void copyFrom(IntoleranceComponent intoleranceComponent, RegistryWrapper.WrapperLookup wrapperLookup);
 }
