@@ -14,7 +14,6 @@ public class PlayerIntoleranceComponent implements IntoleranceComponent {
     private final Map<Intolerance, Integer> intoleranceLevels = new EnumMap<>(Intolerance.class);
     private final Set<Intolerance> discoveredIntolerances = new HashSet<>();
     private boolean initialized = false;
-
     private static final String NBT_PREFIX_LEVEL = "innatetraits.level.";
     private static final String NBT_PREFIX_DISCOVERED = "innatetraits.discovered.";
     private static final String NBT_KEY_INITIALIZED = "innatetraits.initialized";
@@ -38,6 +37,7 @@ public class PlayerIntoleranceComponent implements IntoleranceComponent {
     @Override
     public void setInitialized(boolean initialized) { this.initialized = initialized; }
 
+
     @Override
     public void readFromNbt(NbtCompound tag) {
         for (Intolerance type : Intolerance.values()) {
@@ -48,12 +48,14 @@ public class PlayerIntoleranceComponent implements IntoleranceComponent {
         for (Intolerance type : Intolerance.values()) {
             String levelKey = NBT_PREFIX_LEVEL + type.name();
             if (tag.contains(levelKey)) {
-                intoleranceLevels.put(type, tag.getInt(levelKey, 0));
+                intoleranceLevels.put(type, tag.getInt(levelKey,0));
             }
 
             String discoveredKey = NBT_PREFIX_DISCOVERED + type.name();
-            if (tag.contains(discoveredKey) && tag.getBoolean(discoveredKey, false)) {
-                discoveredIntolerances.add(type);
+            if (tag.contains(discoveredKey)) {
+                if(tag.getBoolean(discoveredKey, false)) {
+                    discoveredIntolerances.add(type);
+                }
             }
         }
 
@@ -84,13 +86,9 @@ public class PlayerIntoleranceComponent implements IntoleranceComponent {
         this.setInitialized(original.hasBeenInitialized());
     }
 
+    // Diese leeren Methoden müssen wir behalten, damit der Compiler zufrieden ist.
     @Override
-    public void readData(ReadView readView) {
-
-    }
-
+    public void readData(ReadView readView) { }
     @Override
-    public void writeData(WriteView writeView) {
-
-    }
+    public void writeData(WriteView writeView) { }
 }
