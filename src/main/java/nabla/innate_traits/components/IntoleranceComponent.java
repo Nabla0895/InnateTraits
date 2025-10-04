@@ -20,6 +20,4 @@ public interface IntoleranceComponent extends CopyableComponent<IntoleranceCompo
 
     @Override
     void copyFrom(IntoleranceComponent intoleranceComponent, RegistryWrapper.WrapperLookup wrapperLookup);
-
-    void markDirty();
 }
