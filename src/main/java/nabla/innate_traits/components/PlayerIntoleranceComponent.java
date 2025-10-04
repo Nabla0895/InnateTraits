@@ -40,6 +40,7 @@ public class PlayerIntoleranceComponent implements IntoleranceComponent {
 
     @Override
     public void readFromNbt(NbtCompound tag) {
+        this.discoveredIntolerances.clear();
         for (Intolerance type : Intolerance.values()) {
             String levelKey = NBT_PREFIX_LEVEL + type.name();
             intoleranceLevels.put(type, tag.getInt(levelKey, 0));
