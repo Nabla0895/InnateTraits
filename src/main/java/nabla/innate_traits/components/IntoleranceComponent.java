@@ -11,6 +11,8 @@ public interface IntoleranceComponent extends CopyableComponent<IntoleranceCompo
     void setLevel(Intolerance type, int level);
     boolean isDiscovered(Intolerance type);
     void setDiscovered(Intolerance type, boolean discovered);
+    boolean hasBeenInitialized();
+    void setInitialized(boolean initialized);
 
     void readFromNbt(NbtCompound tag);
 
