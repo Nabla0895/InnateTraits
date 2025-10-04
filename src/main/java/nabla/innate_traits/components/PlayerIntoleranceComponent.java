@@ -85,6 +85,9 @@ public class PlayerIntoleranceComponent implements IntoleranceComponent {
     }
 
     @Override
+    public void markDirty() { }
+
+    @Override
     public void readData(ReadView readView) { }
     @Override
     public void writeData(WriteView writeView) { }
