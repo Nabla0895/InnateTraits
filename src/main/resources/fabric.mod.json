@@ -18,9 +18,6 @@
     ],
     "main": [
       "nabla.innate_traits.Innate_traits"
-    ],
-    "cardinal-components": [
-      "nabla.innate_traits.Innate_traits"
     ]
   },
   "mixins": [
@@ -35,10 +32,5 @@
     "fabric": "*",
     "minecraft": "${minecraft_version}",
     "cardinal-components-entity": ">=5.6.0"
-  },
-  "custom": {
-    "cardinal-components": [
-      "innate_traits:intolerances"
-    ]
   }
 }
