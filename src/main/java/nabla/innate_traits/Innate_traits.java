@@ -8,6 +8,7 @@ import org.ladysnake.cca.api.v3.component.ComponentKey;
 import org.ladysnake.cca.api.v3.component.ComponentRegistry;
 import org.ladysnake.cca.api.v3.entity.EntityComponentFactoryRegistry;
 import org.ladysnake.cca.api.v3.entity.EntityComponentInitializer;
+import org.ladysnake.cca.api.v3.entity.RespawnCopyStrategy;
 import org.ladysnake.cca.api.v3.entity.RespawnableComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,6 @@ public class Innate_traits implements ModInitializer, EntityComponentInitializer
 
     @Override
     public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
-        registry.registerForPlayers(INTOLERANCES, PlayerIntoleranceComponent::new, RespawnableComponent.ALWAYS_COPY);
+        registry.registerForPlayers(INTOLERANCES, player -> new PlayerIntoleranceComponent(), RespawnCopyStrategy.ALWAYS_COPY);
     }
 }
