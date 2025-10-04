@@ -8,6 +8,7 @@ import org.ladysnake.cca.api.v3.component.ComponentKey;
 import org.ladysnake.cca.api.v3.component.ComponentRegistry;
 import org.ladysnake.cca.api.v3.entity.EntityComponentFactoryRegistry;
 import org.ladysnake.cca.api.v3.entity.EntityComponentInitializer;
+import org.ladysnake.cca.api.v3.entity.RespawnableComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +16,7 @@ public class Innate_traits implements ModInitializer, EntityComponentInitializer
     public static final String MOD_ID = "innate_traits";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-    public static final ComponentKey<IntoleranceComponent> INTOLERANCES = ComponentRegistry.getOrCreate(new Identifier(MOD_ID, "intolerances"), IntoleranceComponent.class);
+    public static final ComponentKey<IntoleranceComponent> INTOLERANCES = ComponentRegistry.getOrCreate(Identifier.of(MOD_ID, "intolerances"), IntoleranceComponent.class);
 
     @Override
     public void onInitialize() {
@@ -23,7 +24,7 @@ public class Innate_traits implements ModInitializer, EntityComponentInitializer
     }
 
     @Override
-    public void registerEntityComponentFactories(EntityComponentFactoryRegistry entityComponentFactoryRegistry) {
-        entityComponentFactoryRegistry.registerForPlayers(INTOLERANCES, player -> new PlayerIntoleranceComponent());
+    public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
+        registry.registerForPlayers(INTOLERANCES, PlayerIntoleranceComponent::new, RespawnableComponent.ALWAYS_COPY);
     }
 }
